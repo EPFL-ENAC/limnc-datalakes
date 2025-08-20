@@ -1,0 +1,45 @@
+{
+  "apiUrl": "https://datalakes.epfl.ch/api",
+  "serverlessUrl": "https://serverless.datalakes-eawag.ch",
+  "serverlessUrls": "http://localhost:3000/dev",
+  "password": "downloadprivatefiles",
+  "key": "ftGUqECH4LzDJHXhfwgNN5RkP3MJTeahtxkjmRcU3AfrWvQj",
+  "bucket": {
+    "name": "eawag-data",
+    "url": "https://eawag-data.s3.eu-central-1.amazonaws.com"
+  },
+  "auth": {
+    "renku": {
+      "clientId": "6c317282b4352e040202e1c0096bd05f9668c82b73560852fdabfbf8c29ec2b7"
+    },
+    "gitlab": {
+      "clientId": "41ed2df8224278138aec50e4f5a6548cc29f2226f1ff590759bedc82477caecd"
+    },
+    "github": {
+      "clientId": "Ov23livywLQE7UaHhaal"
+    }
+  },
+  "basemaps": {
+    "datalakesmap": {
+      "url": "https://api.mapbox.com/styles/v1/jamesrunnalls/ck96x8fhp6h2i1ik5q9xz0iqn/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFtZXNydW5uYWxscyIsImEiOiJjazk0ZG9zd2kwM3M5M2hvYmk3YW0wdW9yIn0.uIJUZoDgaC2LfdGtgMz0cQ",
+      "attribution": "swisstopo DV 5704 000 000 | &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> | &copy; <a href='https://www.mapbox.com/'>mapbox</a>",
+      "title": "Datalakes Map"
+    },
+    "satellite": {
+      "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      "attribution": "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community",
+      "title": "Satellite Imagery"
+    },
+    "swisstopo": {
+      "url": "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg",
+      "attribution": "<a title='Swiss Federal Office of Topography' href='https://www.swisstopo.admin.ch/'>swisstopo</a>",
+      "title": "Swisstopo"
+    },
+    "dark": {
+      "url": "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png",
+      "attribution": "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors &copy; <a href='https://carto.com/attributions'>CARTO</a>",
+      "title": "Dark Theme"
+    }
+  },
+  "groups": []
+}
