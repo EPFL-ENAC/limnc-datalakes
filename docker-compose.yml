@@ -1,0 +1,57 @@
+services:
+  database:
+    image: postgres:16
+    container_name: datalakes_postgres
+    restart: no
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${DB_USER}", "-d", "${DB_DATABASE}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/datalakes_schema.sql:/docker-entrypoint-initdb.d/datalakes_schema.sql
+      - ./db/default_data.sql:/docker-entrypoint-initdb.d/default_data.sql
+
+
+  app:
+    image: ghcr.io/epfl-enac/epfl-limnc/datalakes/nodejs:dev
+    container_name: datalakes
+    restart: no
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_PORT: ${DB_PORT}
+      DATABASE_URL: ${DATABASE_URL}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+    ports:
+      - "4000:4000"
+    volumes:
+      - ~/.ssh_renku:/root/.ssh
+      - ./git:/usr/src/app/git
+      - ./files:/usr/src/app/files
+    command: ["node", "index.js"]
+
+  frontend:
+    image: ghcr.io/epfl-enac/epfl-limnc/datalakes/react:dev
+    container_name: frontend
+    restart: no
+    ports:
+      - "8080:80"
+
+volumes:
+  postgres_data:

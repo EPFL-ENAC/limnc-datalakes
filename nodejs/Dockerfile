@@ -10,6 +10,7 @@ RUN apt-get update && \
     curl \
     unzip \
     git \
+    git-lfs \
     python2.7 \
     awscli \
     gcc \
