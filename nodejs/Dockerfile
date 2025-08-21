@@ -49,6 +49,8 @@ RUN curl -L -o datalakes.zip https://github.com/EPFL-ENAC/datalakes-nodejs/archi
     # Move the unzipped directory to the working directory
     mv datalakes-nodejs-${DL_BRANCH}/* . && rm -rf datalakes-nodejs-${DL_BRANCH}
 
+COPY ./config.js ./config.js
+
 # Install Node.js dependencies
 RUN npm install
 
