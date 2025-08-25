@@ -1,7 +1,7 @@
 FROM node:22-bullseye AS build-stage
 
 # Set the branch to be used for the application
-ENV DL_BRANCH="auth"
+ENV DL_BRANCH="auth-k8s"
 
 RUN mkdir /app
 WORKDIR /app
